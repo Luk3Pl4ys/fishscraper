@@ -51,17 +51,15 @@ def scrape_table():
     print(titles)
     print(messages)
 
-    i = 0
     fishnumbers = []
 
-    for message in messages:
+    for idx, message in enumerate(messages):
         text = message[21:]
 
         if text == 'Zurzeit kein Fischverkauf, bitte schauen Sie später wieder herein.':
             continue
         else:
-            fishnumbers.append(i)
-        i += 1
+            fishnumbers.append(idx)
 
     fishmessages = []
 
