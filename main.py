@@ -83,12 +83,13 @@ def send_email(fishmessages):
     gmail_address = os.environ.get('GMAIL_USER')
     gmail_password = os.environ.get('GMAIL_PASS')
     email_address = os.environ.get('EMAIL_USER')
+    dad_email_adress = os.environ.get('DADMAIL_USER')
 
     msg = EmailMessage()
     msg['Subject'] = 'FISCHVERKAUF!!!'
     msg['From'] = gmail_address
-    msg['To'] = email_address
-    raw_body = ''
+    msg['To'] = [email_address, dad_email_adress]
+    raw_body = 'Es wird aktuell folgender Fisch verkauft: \n\n'
     for message in fishmessages:
         raw_body += message
     body = raw_body
