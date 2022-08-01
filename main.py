@@ -31,17 +31,17 @@ def scrape_table():
     titles = []
     messages = []
 
-    for entry in soup.find('table', id='Tabelle1').find_all('tr'):
-        raw_title = entry.find('td', width="252")
-        if raw_title is not None:
-            title = raw_title.font.text
+    for entry in soup.find('div', id='Anlandungen').find_all('font'):
+        color = entry.attrs['color']
+        if color == '#4d4d4d':
+            title = entry.text
             title = title.strip()
             title = title.replace("Ã¶", "ö")
             title = title.replace(':', '')
             titles.append(title)
 
         else:
-            message_url = entry.td.font.script.attrs['src']
+            message_url = entry.script.attrs['src']
             message_source = requests.get('http:' + message_url).text
             message_soup = BeautifulSoup(message_source, 'lxml')
             raw_message = message_soup.find_all('p')
