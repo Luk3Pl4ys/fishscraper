@@ -56,7 +56,7 @@ def scrape_table():
     for idx, message in enumerate(messages):
         text = message[21:]
 
-        if text == 'Zurzeit kein Fischverkauf, bitte schauen Sie später wieder herein.':
+        if 'kein Verkauf' in text:
             continue
         else:
             fishnumbers.append(idx)
@@ -75,7 +75,8 @@ def scrape_table():
 
 
 # input: list of pre formated messages to be sent
-# creates an encrypted connection to my gmail adress, sends an email to my main email adress
+# creates an encrypted connection to my gmail adress,
+# sends an email to my main email adress and my dads email adress
 # containing the previously scraped messages
 def send_email(fishmessages):
     print('new information found! preparing email...')
