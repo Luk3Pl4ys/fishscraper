@@ -9,17 +9,22 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
+    - name: clone and copy new build
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
+        username: root
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          su jg-pwa
           cd /home/jg-pwa/GitHub/jg-pwa
           git pull
           cp .output /home/jg-pwa -r
-          exit
-          systemctl restart jg-pwa
+    - name: restart node server
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.HOST }}
+        username: jg-pwa
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: systemctl restart jg-pwa
