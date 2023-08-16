@@ -1,4 +1,4 @@
-name: remote ssh command
+name: deploy new build
 on:
   push:
     paths:
@@ -13,7 +13,7 @@ jobs:
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.HOST }}
-        username: root
+        username: jg-pwa
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
@@ -24,7 +24,7 @@ jobs:
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.HOST }}
-        username: jg-pwa
+        username: root
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: systemctl restart jg-pwa
