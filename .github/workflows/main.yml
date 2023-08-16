@@ -17,7 +17,7 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          cd /GitHub/jg-pwa
+          cd /home/jg-pwa/GitHub/jg-pwa
           git pull
           cp .output /home/jg-pwa -r
           systemctl restart jg-pwa
