@@ -19,7 +19,6 @@ jobs:
         script: |
           cd /home/jg-pwa/GitHub/jg-pwa
           git pull
-          cp .output /home/jg-pwa -r
     - name: restart node server
       uses: appleboy/ssh-action@v1.0.0
       with:
